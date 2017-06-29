@@ -9,8 +9,11 @@ print("The time is now: ", time.time())
 print("The local time: ", time.localtime())
 
 # Time only runs in one direction
-old_monotime = 0;
-old_systime = 0;
+old_monotime = 0
+old_systime = 0
+output = ""
+print("||  Monotime  ||  System Time  ||  Mono Delta  ||  System Delta  ||")
+print("===================================================================")
 
 while True:
     time.sleep(5)
@@ -26,14 +29,17 @@ while True:
     delta_monotime = monotime - old_monotime
     delta_systime = systime - old_systime
 
-    if delta_monotime != monotime:
-        print("monotime delta is: ", delta_monotime)
-    if delta_systime != systime:
-        print("systime delta is: ", delta_systime)
+    output += "|| " + str(monotime) + " || " + str(systime) + " || " + str(delta_monotime) + " || " + str(delta_systime) + " ||"
 
+    #if delta_monotime != monotime:
+        #print("monotime delta is: ", delta_monotime)
+    #if delta_systime != systime:
+        #print("systime delta is: ", delta_systime)
 
-    print("The monotime is now: ", monotime)
-    print("The system time is now: ", systime)
+    print(output)
+    output = ""
+    #print("The monotime is now: ", monotime)
+    #print("The system time is now: ", systime)
 
     old_monotime = monotime
     old_systime = systime 
