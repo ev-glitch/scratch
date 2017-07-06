@@ -12,6 +12,12 @@ print("The local time: ", time.localtime())
 old_monotime = 0
 old_systime = 0
 output = ""
+
+column_names = [ "Monotime", "System Time", "Mono Delta", "System Delta" ] 
+column_gen = ["time.monotonic()", "time.time()", "monotime - old_monotime", "systime - old_systime"]
+border = "||"
+column_sep = "||"
+
 print("||  Monotime  ||  System Time  ||  Mono Delta  ||  System Delta  ||")
 print("===================================================================")
 
