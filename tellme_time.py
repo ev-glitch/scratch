@@ -14,17 +14,26 @@ old_systime = 0
 output = ""
 
 column_names = [ "Monotime", "System Time", "Mono Delta", "System Delta" ] 
-column_gen = ["time.monotonic()", "time.time()", "monotime - old_monotime", "systime - old_systime"]
+column_gen = ["time.monotonic()", 
+              "time.time()" ]
+
 border = "||"
 column_sep = "||"
+
+column = { "Monotime": "time.monotonic()", "Systime": "time.time()",
+           "Mono Delta": "monotime - old_monotime", 
+           "System Delta": "systime - old_systime"}
 
 print("||  Monotime  ||  System Time  ||  Mono Delta  ||  System Delta  ||")
 print("===================================================================")
 
 while True:
     time.sleep(5)
-    monotime = time.monotonic()
-    systime = time.time() 
+    output = "|| "
+    for gen in column_gen: 
+        output += str(eval(gen)) + " || "
+   # monotime = eval(column_gen[0])
+   # systime = eval(column_gen[1])
 
     if monotime < old_monotime:
         print("ERROR! monotime is not monotonic!")
@@ -32,10 +41,10 @@ while True:
         print("WARNING! systime has been modified!")
 
     # time delta
-    delta_monotime = monotime - old_monotime
-    delta_systime = systime - old_systime
+    #delta_monotime = monotime - old_monotime
+    #delta_systime = systime - old_systime
 
-    output += "|| " + str(monotime) + " || " + str(systime) + " || " + str(delta_monotime) + " || " + str(delta_systime) + " ||"
+    #output += "|| " + str(monotime) + " || " + str(systime) + " || " + str(delta_monotime) + " || " + str(delta_systime) + " ||"
 
     #if delta_monotime != monotime:
         #print("monotime delta is: ", delta_monotime)
